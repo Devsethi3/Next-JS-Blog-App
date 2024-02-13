@@ -54,13 +54,13 @@ const LoginPage = () => {
 
   return (
     <>
-      <section className="bg-white">
+      <section className="">
         <div className="">
           <aside className="relative block h-16 lg:order-last lg:col-span-5 lg:h-full xl:col-span-6"></aside>
 
           <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
             <div className="max-w-xl lg:max-w-3xl">
-              <h1 className="mt-3 text-center text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
+              <h1 className="mt-3 text-center text-2xl font-bold sm:text-3xl md:text-4xl">
                 Welcome to Name Lorem
               </h1>
 

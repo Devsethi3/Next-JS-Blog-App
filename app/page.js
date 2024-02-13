@@ -1,11 +1,10 @@
-import React from 'react'
-
+import HeroSection from "./components/heroSection/HeroSection";
 const page = () => {
   return (
     <div>
-      <p>Hello</p>
+      <HeroSection />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default page;

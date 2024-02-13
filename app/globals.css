@@ -1,3 +1,82 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --bg: white;
+  --textColor: black;
+  --primary-bg: #8533bc;
+  --softBg: #f0f0f0;
+  --softTextColor: #626262;
+}
+.dark {
+  --bg: #0f172a;
+  --textColor: #ddd;
+  --primary-bg: #8533bc;
+
+  --softBg: #2e1f3a;
+  --softTextColor: #a6a6a6;
+}
+body {
+  background: var(--bg);
+  color: var(--textColor);
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+.container {
+  overflow-x: hidden;
+  max-width: 1380px;
+  margin-inline: auto;
+  padding-inline: 0.75rem;
+}
+.container {
+  max-width: 1380px;
+  margin-inline: auto;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+.loader {
+  width: 44.8px;
+  height: 44.8px;
+  color: #10b867;
+  position: relative;
+  background: radial-gradient(11.2px, currentColor 94%, #0000);
+}
+
+.loader:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(10.08px at bottom right, #0000 94%, currentColor)
+      top left,
+    radial-gradient(10.08px at bottom left, #0000 94%, currentColor) top right,
+    radial-gradient(10.08px at top right, #0000 94%, currentColor) bottom left,
+    radial-gradient(10.08px at top left, #0000 94%, currentColor) bottom right;
+  background-size: 22.4px 22.4px;
+  background-repeat: no-repeat;
+  animation: loader 1.5s infinite cubic-bezier(0.3, 1, 0, 1);
+}
+
+@keyframes loader {
+  33% {
+    inset: -11.2px;
+    transform: rotate(0deg);
+  }
+
+  66% {
+    inset: -11.2px;
+    transform: rotate(90deg);
+  }
+
+  100% {
+    inset: 0;
+    transform: rotate(90deg);
+  }
+}
