@@ -72,7 +72,7 @@ const Header = () => {
                   <Link href="/">About</Link>
                 </li>
                 <li>
-                  <Link href="/">Trending</Link>
+                  <Link href="/recent-posts">Recent Posts</Link>
                 </li>
               </ul>
             </nav>
