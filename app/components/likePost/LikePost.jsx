@@ -22,13 +22,16 @@ const LikePost = ({ postId }) => {
 
   return (
     <div>
-      <div onClick={handleLike} className="flex flex-col items-center">
+      <div
+        onClick={handleLike}
+        className="flex cursor-pointer flex-col items-center"
+      >
         <FaHeart
-          className={`text-[3.2rem] p-3 hover:bg-gray-100 ${
+          className={`text-[3.2rem] p-3 post-action ${
             like ? "text-red-500" : null
-          } cursor-pointer rounded-md`}
+          } rounded-md`}
         />
-        <span className="mt-[-5px] text-sm text-gray-700">Like({like})</span>
+        <span className="mt-[-5px] text-sm post-action-text">Like({like})</span>
       </div>
     </div>
   );

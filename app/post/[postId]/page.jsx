@@ -91,15 +91,15 @@ const SinglePostPage = ({ params }) => {
   return (
     <>
       <div onClick={handleGoBack}>
-        <FaArrowLeftLong className="text-5xl p-3 cursor-pointer text-gray-800 rounded-full hover:bg-gray-100" />
+        <FaArrowLeftLong className="text-5xl p-3 cursor-pointer back-arrow rounded-full" />
       </div>
       {isLoading ? (
         <SinglePostSkeleton />
       ) : postDetail ? (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center w-full">
             <div className="text-center md:text-left">
-              <h1 className="text-5xl leading-[3.3rem] text-gray-800 font-bold">
+              <h1 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl leading-[3.3rem] single-post-heading font-bold">
                 {postDetail.title}
               </h1>
               <div className="flex mt-20 items-center gap-2">
@@ -119,14 +119,14 @@ const SinglePostPage = ({ params }) => {
                 <LikePost postId={postId} />
                 <div
                   onClick={handleShare}
-                  className="flex flex-col items-center"
+                  className="flex cursor-pointer flex-col items-center"
                 >
-                  <FaShareSquare className="text-[3.2rem] p-3 hover:bg-gray-100 cursor-pointer rounded-md" />
-                  <span className="mt-[-5px] text-sm text-gray-700">Share</span>
+                  <FaShareSquare className="text-[3.2rem] p-3 post-action rounded-md" />
+                  <span className="mt-[-5px] text-sm post-action-text">Share</span>
                 </div>
               </div>
             </div>
-            <div className="relative z-[-10] w-full h-[80vh]">
+            <div className="relative z-[-10] w-full h-[50vh] lg:h-[80vh]">
               <Image
                 src={postDetail?.image}
                 layout="fill"
@@ -135,11 +135,9 @@ const SinglePostPage = ({ params }) => {
               />
             </div>
           </div>
-          <div className="flex items-center gap-10 mt-16">
-            <div className="flex-[6] ">
-              <p className="text-justify text-xl">{postDetail?.desc}</p>
-              <p>{postDetail.desc}</p>
-              <p>{postDetail.desc}</p>
+          <div className="flex items-center single-post-bottom gap-10 mt-16">
+            <div className="flex-[6]">
+              <p className="text-justify text-sm lg:text-xl leading-tight opacity-80">{postDetail?.desc}</p>
             </div>
             <h1 className="flex-[2]">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis

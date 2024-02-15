@@ -13,7 +13,6 @@ import { FcGoogle } from "react-icons/fc";
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, setUser] = useState(null); // State to hold user information
   const router = useRouter();
 
   const provider = new GoogleAuthProvider();
@@ -37,43 +36,31 @@ const LoginPage = () => {
     }
   };
 
-  useEffect(() => {
-    // Add an authentication state observer
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
-      if (user) {
-        console.log("User is authenticated:", user);
-      } else {
-        console.log("User is not authenticated");
-      }
-    });
-
-    // Clean up the observer
-    return () => unsubscribe();
-  }, []);
-
   return (
     <>
       <section className="">
         <div className="">
           <aside className="relative block h-16 lg:order-last lg:col-span-5 lg:h-full xl:col-span-6"></aside>
 
-          <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
+          <main className="flex items-center justify-center lg:col-span-7 xl:col-span-6">
             <div className="max-w-xl lg:max-w-3xl">
-              <h1 className="mt-3 text-center text-2xl font-bold sm:text-3xl md:text-4xl">
+              <h1 className="mt-12 login-heading text-center text-3xl font-bold sm:text-3xl md:text-4xl">
                 Welcome to Name Lorem
               </h1>
 
               <p className="mt-4 text-center leading-relaxed text-gray-500">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Exercitationem saepe natus <br /> tempore iure a necessitatibus
-                veritatis, iste doloremque! Voluptate, quo.
+                Exercitationem saepe natus <br />{" "}
+                <p className="login-text">
+                  tempore iure a necessitatibus veritatis, iste doloremque!
+                  Voluptate, quo.
+                </p>
               </p>
 
               <div>
                 <button
                   onClick={signInWithGoogle}
-                  className="flex w-full bg-slate-100 justify-center py-2 mt-4 rounded-md items-center gap-3"
+                  className="flex w-full input-field justify-center py-2 mt-4 rounded-md items-center gap-3"
                 >
                   <FcGoogle className="text-xl" />
                   <span>Login With Google</span>
@@ -96,7 +83,7 @@ const LoginPage = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     id="Email"
                     name="email"
-                    className="mt-1 w-full rounded-md bg-[#F3F4F6] py-2 border-2 border-transparent px-4 outline-none focus-visible:border-2 focus-visible:border-cyan-400 focus-visible:bg-white text-gray-800"
+                    className="mt-1 w-full rounded-md input-field py-2 border-2 border-transparent px-4 outline-none focus-visible:border-2 focus-visible:border-cyan-400 "
                   />
                 </div>
 
@@ -115,7 +102,7 @@ const LoginPage = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     id="Password"
                     name="password"
-                    className="mt-1 w-full rounded-md bg-[#F3F4F6] py-2 border-2 border-transparent px-4 outline-none focus-visible:border-2 focus-visible:border-cyan-400 focus-visible:bg-white text-gray-800"
+                    className="mt-1 w-full rounded-md input-field py-2 border-2 border-transparent px-4 outline-none focus-visible:border-2 focus-visible:border-cyan-400  "
                   />
                 </div>
                 <div className="col-span-6">
@@ -130,7 +117,7 @@ const LoginPage = () => {
                       className="size-5 rounded-md border-gray-200 bg-white shadow-sm"
                     />
 
-                    <span className="text-gray-700 text-sm">
+                    <span className="text-gray-600 text-sm">
                       I want to receive emails about events, product updates and
                       company announcements.
                     </span>

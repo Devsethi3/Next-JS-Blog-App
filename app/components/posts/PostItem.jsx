@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import LikePost from "../likePost/LikePost";
 import { FaShareSquare } from "react-icons/fa";
 
 const PostItem = ({ list }) => {
@@ -18,7 +17,7 @@ const PostItem = ({ list }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1000); // Adjust the timeout as needed
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -43,7 +42,7 @@ const PostItem = ({ list }) => {
           </div>
         </div>
       ) : (
-        <div className="p-2 bg-gray-100 rounded-md">
+        <div className="p-2 singlepost-bg rounded-md">
           <div>
             <Image
               onClick={() => router.push("/post/" + list.id)}
@@ -69,7 +68,7 @@ const PostItem = ({ list }) => {
                   className="rounded-full"
                 />
                 <div>
-                  <h4 className="text-gray-800 text-sm font-semibold">
+                  <h4 className="single-post-name text-sm font-semibold">
                     {list.userName}
                   </h4>
                 </div>

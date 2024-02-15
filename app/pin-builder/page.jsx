@@ -9,6 +9,7 @@ import { doc, getFirestore, setDoc } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { useRouter } from "next/navigation";
 import UploadImage from "../components/uploadImage/UploadImage";
+import UserTag from "../components/userTag/UserTag";
 
 const CreatePost = () => {
   const db = getFirestore(app);
@@ -73,7 +74,7 @@ const CreatePost = () => {
 
   return (
     <>
-      <div className="grid grid-cols-2 gap-10 items-center mt-5">
+      <div className="grid ggrid-cols-1 lg:grid-cols-2 gap-10 items-center mt-5">
         <UploadImage setFile={setFile} />
         <div className="">
           <div className="flex flex-col gap-1">
@@ -83,7 +84,7 @@ const CreatePost = () => {
             <input
               onChange={(e) => setTitle(e.target.value)}
               type="text"
-              className="bg-gray-100 py-2 px-4 text-2xl rounded-md border-2 border-gray-300 focus:border-teal-600 focus:ring-1 focus:ring-teal-600 outline-none focus-visible:border-teal-600"
+              className="input-field py-2 px-4 text-2xl rounded-md border-2 focus:border-teal-600 focus:ring-1 focus:ring-teal-600 outline-none focus-visible:border-teal-600"
               placeholder="How rain affect me..."
             />
             <span className="text-gray-400 text-sm">
@@ -95,21 +96,7 @@ const CreatePost = () => {
               <LoadingSkeleton />
             </div>
           ) : (
-            <div className="mt-5 flex items-center gap-2">
-              <Image
-                className="rounded-full cursor-pointer p-2 hover:bg-gray-200"
-                src={user?.photoURL}
-                width={54}
-                height={54}
-                alt="user"
-              />
-              <div className="flex flex-col">
-                <p className="text-gray-800">{user?.displayName}</p>
-                <span className="text-sm text-gray-600 mt-[-3px]">
-                  {user?.email}
-                </span>
-              </div>
-            </div>
+            <UserTag user={user} />
           )}
           <div className="flex flex-col mt-8 gap-1">
             <label htmlFor="title" className="text-gray-500">
@@ -118,7 +105,7 @@ const CreatePost = () => {
             <textarea
               onChange={(e) => setDesc(e.target.value)}
               rows={6}
-              className="bg-gray-100 py-2 px-4 resize-none text-lg rounded-md outline-none border-2 border-gray-300 focus:border-teal-600 focus:ring-1 focus:ring-teal-600"
+              className="input-field py-2 px-4 resize-none text-lg rounded-md outline-none border-2 focus:border-teal-600 focus:ring-1 focus:ring-teal-600"
               placeholder="This is how I make this beautiful..."
             />
           </div>
@@ -129,7 +116,7 @@ const CreatePost = () => {
             <input
               onChange={(e) => setLink(e.target.value)}
               type="text"
-              className="bg-gray-100 py-2 px-4 text-2xl rounded-md border-2 border-gray-300 focus:border-teal-600 focus:ring-1 focus:ring-teal-600 outline-none focus-visible:border-teal-600"
+              className="input-field py-2 px-4 text-xl rounded-md border-2 focus:border-teal-600 focus:ring-1 focus:ring-teal-600 outline-none focus-visible:border-teal-600"
               placeholder="https://youtube.com"
             />
           </div>

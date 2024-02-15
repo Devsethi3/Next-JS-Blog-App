@@ -22,12 +22,12 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="flex items-center bg-gray-100 rounded-md py-2 px-4">
+    <div className="flex items-center search-bar rounded-md py-2 px-4">
       <FaSearch className="text-gray-400 mr-3" />
       <input
         onChange={filterPost}
         type="text"
-        className="bg-transparent focus:outline-none flex-1"
+        className="bg-transparent outline-none flex-1"
         name="search"
         id="search"
         placeholder="Search Here..."

@@ -63,15 +63,15 @@ const ProfilePage = ({ params }) => {
     try {
       const q = query(
         collection(db, "blog-post"),
-        where("email", "==", user?.email) // Changed from session?.user?.email to user?.email
+        where("email", "==", user?.email) 
       );
       const querySnapshot = await getDocs(q);
       const pinsData = querySnapshot.docs.map((doc) => doc.data());
       setListOfPins(pinsData);
-      setIsLoading(false); // Changed from setLoading(false)
+      setIsLoading(false); 
     } catch (error) {
       console.error("Error fetching user pins:", error);
-      setIsLoading(false); // Changed from setError(error) and setLoading(false)
+      setIsLoading(false);
     }
   };
   

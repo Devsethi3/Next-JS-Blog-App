@@ -57,7 +57,13 @@ const Header = () => {
       <header className="">
         <div className="flex h-[5rem] items-center justify-between">
           <div className="md:flex md:items-center md:gap-12">
-            <Link href="/">
+            <Link href="/" className="flex items-center gap-4">
+              <Image
+                src="/images/favicon.ico"
+                width={35}
+                height={35}
+                alt="logo"
+              />
               <p className="text-3xl font-bold">BLOGAPP</p>
             </Link>
           </div>

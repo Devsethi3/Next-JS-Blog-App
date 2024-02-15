@@ -9,17 +9,22 @@
 :root {
   --bg: white;
   --textColor: black;
-  --primary-bg: #8533bc;
+  --light-primary-color: #ebebeb;
   --softBg: #f0f0f0;
-  --softTextColor: #626262;
+  --softTextColor: #3b3b3b;
+  --border-color: #e7e7e7;
+  --theme-button: #36184a;
+  --hover-light-primary-color: #d7ffe5;
 }
 .dark {
   --bg: #0f172a;
+  --light-primary-color: #ffffff12;
   --textColor: #ddd;
-  --primary-bg: #8533bc;
-
-  --softBg: #2e1f3a;
+  --softBg: #182442;
+  --theme-button: #8b44bb;
+  --border-color: #334367;
   --softTextColor: #a6a6a6;
+  --hover-light-primary-color: #26324d;
 }
 body {
   background: var(--bg);
@@ -27,6 +32,43 @@ body {
 }
 body::-webkit-scrollbar {
   display: none;
+}
+.theme-button {
+  background: var(--theme-button);
+}
+.search-bar {
+  background: var(--softBg);
+}
+.upload-input {
+  border-color: var(--border-color);
+  background: var(--softBg);
+  transition: all 0.3s ease;
+}
+.upload-input:hover {
+  background: var(--hover-light-primary-color);
+}
+.input-field {
+  background: var(--softBg);
+  border-color: var(--border-color);
+}
+.singlepost-bg {
+  background: var(--softBg);
+}
+.single-post-name {
+  color: var(--softTextColor);
+}
+.single-post-heading {
+  color: var(--softTextColor);
+}
+.back-arrow:hover {
+  background: var(--light-primary-color);
+  transition: all 0.2s ease;
+}
+.post-action:hover {
+  background: var(--light-primary-color);
+}
+.post-action-text {
+  color: var(--softTextColor);
 }
 .container {
   overflow-x: hidden;
@@ -78,5 +120,65 @@ body::-webkit-scrollbar {
   100% {
     inset: 0;
     transform: rotate(90deg);
+  }
+}
+
+/* =============================== MEDIA QUERRIES =============================== */
+
+@media screen and (max-width: 1536px) {
+  .container {
+    max-width: 1350px;
+  }
+}
+@media screen and (max-width: 1280px) {
+  .container {
+    max-width: 1024px;
+  }
+  .home-text{
+    font-size: 4rem;
+  }
+  .hero-text{
+    font-size: 2rem;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .container {
+    max-width: 768px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .container {
+    max-width: 640px;
+  }
+  .home-text {
+    font-size: 3rem;
+    text-align: center;
+  }
+  .login-heading{
+    margin-top: -2rem;
+  }
+  .login-text, .back-arrow{
+    display: none;
+  }
+  .hero-text{
+    font-size: 1.8rem;
+  }
+  .single-post-bottom{
+    flex-direction: column;
+  }
+  .single-post-text{
+    font-size: .9rem;
+  }
+  .single-post-heading{
+    margin-top: 2rem;
+    line-height: 2rem;
+  }
+}
+@media screen and (max-width: 640px) {
+  .container {
+    max-width: 475px;
+  }
+  .home-text{
+    font-size: 2.5rem;
   }
 }
