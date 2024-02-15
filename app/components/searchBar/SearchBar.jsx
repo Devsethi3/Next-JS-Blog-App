@@ -1,10 +1,31 @@
+"use client";
+import { app } from "@/firebaseConfig";
+import { collection, getFirestore, query } from "firebase/firestore";
+import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 
 const SearchBar = () => {
+  const [postData, setPostData] = useState();
+  const db = getFirestore(app);
+
+  const filterPost = async (e) => {
+    const value = e.target.value;
+    const q = query(collection(db, "blog-post"));
+    const querySnapshot = await getDocs(q);
+    const pinsData = querySnapshot.docs.map((doc) => doc.data());
+    setPostData(pinsData);
+
+    const filteredPosts = pinsData.filter((postData) =>
+      postData.title.toLowerCase().includes(value.toLowerCase())
+    );
+    return filteredPosts;
+  };
+
   return (
     <div className="flex items-center bg-gray-100 rounded-md py-2 px-4">
       <FaSearch className="text-gray-400 mr-3" />
       <input
+        onChange={filterPost}
         type="text"
         className="bg-transparent focus:outline-none flex-1"
         name="search"
