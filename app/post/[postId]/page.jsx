@@ -101,8 +101,8 @@ const SinglePostPage = ({ params }) => {
               <h1 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl leading-[3.3rem] single-post-heading font-bold">
                 {postDetail.title}
               </h1>
-              <div className="flex items-center single-post-flex gap-32">
-                <div className="flex mt-20 items-center gap-2">
+              <div className="flex mt-16 items-center single-post-flex gap-32">
+                <div className="flex items-center gap-2">
                   <Image
                     className="rounded-full"
                     src={user?.photoURL}

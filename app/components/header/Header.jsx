@@ -12,7 +12,7 @@ import { RiArrowDropDownLine, RiCloseCircleLine } from "react-icons/ri";
 import { FaUserCircle } from "react-icons/fa";
 import { MdLogout } from "react-icons/md";
 import SearchBar from "../searchBar/SearchBar";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Header = () => {
   const router = useRouter();

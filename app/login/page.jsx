@@ -44,7 +44,7 @@ const LoginPage = () => {
 
           <main className="flex items-center justify-center lg:col-span-7 xl:col-span-6">
             <div className="max-w-xl lg:max-w-3xl">
-              <h1 className="mt-12 login-heading text-center text-3xl font-bold sm:text-3xl md:text-4xl">
+              <h1 className="mt-8 login-heading text-center text-3xl font-bold sm:text-3xl md:text-4xl">
                 Welcome to Name Lorem Ipusm
               </h1>
 
@@ -67,7 +67,15 @@ const LoginPage = () => {
                 </button>
               </div>
 
-              <form action="#" className="mt-10 grid grid-cols-6 gap-6">
+              <span className="relative mt-5 flex justify-center">
+                <div className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-transparent bg-gradient-to-r from-transparent via-gray-500 to-transparent opacity-75"></div>
+
+                <span className="relative z-10 login-seperator  px-6">
+                  or
+                </span>
+              </span>
+
+              <form action="#" className="mt-5 grid grid-cols-6 gap-6">
                 <div className="col-span-6">
                   <label
                     htmlFor="Email"

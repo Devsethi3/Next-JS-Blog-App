@@ -21,6 +21,7 @@ const CreatePost = () => {
   const [user, setUser] = useState(null);
   const [file, setFile] = useState();
   const [category, setCategory] = useState();
+  const [tags, setTags] = useState([]);
   const [title, setTitle] = useState();
   const [desc, setDesc] = useState();
   const [link, setLink] = useState();
@@ -51,7 +52,7 @@ const CreatePost = () => {
             desc: desc,
             link: link,
             image: url,
-            // category: category,
+            category: category,
             userName: user.displayName,
             email: user.email,
             userImage: user.photoURL,
@@ -66,11 +67,20 @@ const CreatePost = () => {
   };
 
   const handleSave = () => {
-    if (!title || !desc || !file || !category) {
-      alert("Please fill in all fields and upload an image.");
+    if (!title || !desc || !file || tags.length === 0) {
+      alert(
+        "Please fill in all fields, upload an image, and add at least one category."
+      );
       return;
     }
+    setCategory(tags.join(", "));
     uploadFile();
+  };
+
+  const handleCategory = () => {
+    if (!category.trim()) return; // Skip empty categories
+    setTags((prevTags) => [...prevTags, category.trim()]);
+    setCategory(""); // Clear input field after saving
   };
 
   return (
@@ -114,14 +124,38 @@ const CreatePost = () => {
             <label htmlFor="title" className="text-gray-500">
               Add Category to your blog
             </label>
-            <div className="flex items-center gap-5">
+            <div className="flex flex-wrap gap-2">
+              {tags.map((tag, index) => (
+                <div
+                  key={index}
+                  className="bg-teal-600 flex items-center gap-3 text-white px-3 py-1 rounded-md"
+                >
+                  {tag}
+                  <button
+                    onClick={() =>
+                      setTags((prevTags) =>
+                        prevTags.filter((_, i) => i !== index)
+                      )
+                    }
+                    className="text-red-200 font-bold text-xs hover:text-white focus:outline-none"
+                  >
+                    &#10005;
+                  </button>
+                </div>
+              ))}
+            </div>
+            <div className="flex items-center gap-2">
               <input
                 onChange={(e) => setCategory(e.target.value)}
+                value={category}
                 type="text"
                 className="input-field w-[80%] py-2 px-4 text-lg lg:text-xl rounded-md border-2 focus:border-teal-600 focus:ring-1 focus:ring-teal-600 outline-none focus-visible:border-teal-600"
                 placeholder="travel,food,fitness..."
               />
-              <button className="bg-teal-600 px-5 text-white py-2.5 rounded-md">
+              <button
+                onClick={handleCategory}
+                className="bg-teal-600 px-5 text-white py-2.5 rounded-md"
+              >
                 Save
               </button>
             </div>

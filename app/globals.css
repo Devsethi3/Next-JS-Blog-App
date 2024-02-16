@@ -19,6 +19,7 @@
   --border-color: #e7e7e7;
   --theme-button: #36184a;
   --hover-light-primary-color: #d7ffe5;
+  --login-seperator: #fff;
 }
 .dark {
   --bg: #0f172a;
@@ -29,6 +30,7 @@
   --border-color: #334367;
   --softTextColor: #a6a6a6;
   --hover-light-primary-color: #26324d;
+  --login-seperator: #0f172a;
 }
 body {
   background: var(--bg);
@@ -41,6 +43,9 @@ body::-webkit-scrollbar {
 }
 .theme-button {
   background: var(--theme-button);
+}
+.login-seperator{
+  background: var(--login-seperator);
 }
 .search-bar {
   background: var(--softBg);
