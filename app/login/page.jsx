@@ -39,13 +39,13 @@ const LoginPage = () => {
   return (
     <>
       <section className="">
-        <div className="">
+        <div className="py-8">
           <aside className="relative block h-16 lg:order-last lg:col-span-5 lg:h-full xl:col-span-6"></aside>
 
           <main className="flex items-center justify-center lg:col-span-7 xl:col-span-6">
             <div className="max-w-xl lg:max-w-3xl">
               <h1 className="mt-12 login-heading text-center text-3xl font-bold sm:text-3xl md:text-4xl">
-                Welcome to Name Lorem
+                Welcome to Name Lorem Ipusm
               </h1>
 
               <p className="mt-4 text-center leading-relaxed text-gray-500">
@@ -78,7 +78,7 @@ const LoginPage = () => {
                   </label>
 
                   <input
-                    placeholder="example@gmail.com"
+                    placeholder="johndoe@gmail.com"
                     type="email"
                     onChange={(e) => setEmail(e.target.value)}
                     id="Email"
@@ -146,14 +146,6 @@ const LoginPage = () => {
                   >
                     Create an account
                   </button>
-
-                  <p className="mt-4 text-sm text-gray-500 sm:mt-0">
-                    Already have an account?
-                    <a href="#" className="text-gray-700 underline">
-                      Log in
-                    </a>
-                    .
-                  </p>
                 </div>
               </form>
             </div>

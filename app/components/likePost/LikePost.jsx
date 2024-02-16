@@ -6,7 +6,6 @@ const LikePost = ({ postId }) => {
   const [like, setLike] = useState(0);
 
   useEffect(() => {
-    // Retrieve like data from localStorage on component mount
     const storedLike = localStorage.getItem(`like_${postId}`);
     if (storedLike) {
       setLike(parseInt(storedLike, 10));
@@ -16,7 +15,6 @@ const LikePost = ({ postId }) => {
   const handleLike = () => {
     const newLike = like === 1 ? 0 : 1;
     setLike(newLike);
-    // Update like data in localStorage for this specific post
     localStorage.setItem(`like_${postId}`, newLike.toString());
   };
 

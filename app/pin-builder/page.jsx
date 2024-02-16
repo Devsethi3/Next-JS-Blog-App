@@ -20,6 +20,7 @@ const CreatePost = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
   const [file, setFile] = useState();
+  const [category, setCategory] = useState();
   const [title, setTitle] = useState();
   const [desc, setDesc] = useState();
   const [link, setLink] = useState();
@@ -50,13 +51,14 @@ const CreatePost = () => {
             desc: desc,
             link: link,
             image: url,
+            // category: category,
             userName: user.displayName,
             email: user.email,
             userImage: user.photoURL,
           };
           await setDoc(doc(db, "blog-post", postId), postData).then(
             (response) => {
-              router.push("/" + user.email);
+              router.push("/");
             }
           );
         });
@@ -64,17 +66,16 @@ const CreatePost = () => {
   };
 
   const handleSave = () => {
-    if (!title || !desc || !link || !file) {
+    if (!title || !desc || !file || !category) {
       alert("Please fill in all fields and upload an image.");
       return;
     }
-
     uploadFile();
   };
 
   return (
     <>
-      <div className="grid ggrid-cols-1 lg:grid-cols-2 gap-10 items-center mt-5">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center mt-5">
         <UploadImage setFile={setFile} />
         <div className="">
           <div className="flex flex-col gap-1">
@@ -84,8 +85,8 @@ const CreatePost = () => {
             <input
               onChange={(e) => setTitle(e.target.value)}
               type="text"
-              className="input-field py-2 px-4 text-2xl rounded-md border-2 focus:border-teal-600 focus:ring-1 focus:ring-teal-600 outline-none focus-visible:border-teal-600"
-              placeholder="How rain affect me..."
+              className="input-field py-2 px-4 text-xl lg:text-2xl rounded-md border-2 focus:border-teal-600 focus:ring-1 focus:ring-teal-600 outline-none focus-visible:border-teal-600"
+              placeholder="Their Impact on the Digital..."
             />
             <span className="text-gray-400 text-sm">
               It should not less than 15-20 words. It make blog understandable
@@ -105,18 +106,37 @@ const CreatePost = () => {
             <textarea
               onChange={(e) => setDesc(e.target.value)}
               rows={6}
-              className="input-field py-2 px-4 resize-none text-lg rounded-md outline-none border-2 focus:border-teal-600 focus:ring-1 focus:ring-teal-600"
-              placeholder="This is how I make this beautiful..."
+              className="input-field py-2 px-4 resize-none text-normal lg:text-lg rounded-md outline-none border-2 focus:border-teal-600 focus:ring-1 focus:ring-teal-600"
+              placeholder="Why are they causing such a..."
             />
           </div>
           <div className="flex flex-col gap-1 mt-12">
+            <label htmlFor="title" className="text-gray-500">
+              Add Category to your blog
+            </label>
+            <div className="flex items-center gap-5">
+              <input
+                onChange={(e) => setCategory(e.target.value)}
+                type="text"
+                className="input-field w-[80%] py-2 px-4 text-lg lg:text-xl rounded-md border-2 focus:border-teal-600 focus:ring-1 focus:ring-teal-600 outline-none focus-visible:border-teal-600"
+                placeholder="travel,food,fitness..."
+              />
+              <button className="bg-teal-600 px-5 text-white py-2.5 rounded-md">
+                Save
+              </button>
+            </div>
+            <span className="text-gray-400 text-sm">
+              Category related to your blog topic for better understanding
+            </span>
+          </div>
+          <div className="flex flex-col gap-1 mt-10">
             <label htmlFor="title" className="text-gray-500">
               Add Link To The Subject
             </label>
             <input
               onChange={(e) => setLink(e.target.value)}
               type="text"
-              className="input-field py-2 px-4 text-xl rounded-md border-2 focus:border-teal-600 focus:ring-1 focus:ring-teal-600 outline-none focus-visible:border-teal-600"
+              className="input-field py-2 px-4 text-lg lg:text-xl rounded-md border-2 focus:border-teal-600 focus:ring-1 focus:ring-teal-600 outline-none focus-visible:border-teal-600"
               placeholder="https://youtube.com"
             />
           </div>

@@ -74,7 +74,7 @@ const PostItem = ({ list }) => {
                 </div>
               </div>
               <div onClick={handleShare} className="flex flex-col items-center">
-                <FaShareSquare className="text-[3rem] p-3 text-teal-600 hover:bg-gray-100 cursor-pointer" />
+                <FaShareSquare className="text-[3rem] p-3 text-teal-600 post-action cursor-pointer" />
               </div>
             </div>
           </div>

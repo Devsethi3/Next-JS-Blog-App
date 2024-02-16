@@ -76,7 +76,7 @@ const Featured = () => {
             <div className="bg-gray-300 h-5 w-44"></div>
           </div>
         </div>
-        <button className="mt-[3rem] px-5 py-2 rounded-md bg-gray-300 hover:bg-gray-400"></button>
+        <button className="mt-[3rem] h-10 w-32 rounded-md bg-gray-300"></button>
       </div>
     </div>
   );

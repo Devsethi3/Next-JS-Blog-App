@@ -21,10 +21,10 @@ const ThemeToggle = () => {
   }, [darkMode]);
 
   return (
-    <>
+    <div className="theme-toggle">
       <div
         onClick={() => setDarkMode(!darkMode)}
-        className="w-[70px] theme-button h-[30px]  relative rounded-full cursor-pointer flex items-center justify-between px-2"
+        className="w-[70px] theme-button h-[30px] relative rounded-full cursor-pointer flex items-center justify-between px-2"
       >
         <FaMoon className="text-red-500 dark:text-white" />
         <span
@@ -37,7 +37,7 @@ const ThemeToggle = () => {
         ></span>
         <FaSun className="dark:text-yellow-400" />
       </div>
-    </>
+    </div>
   );
 };
 

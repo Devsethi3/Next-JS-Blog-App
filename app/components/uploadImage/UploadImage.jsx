@@ -9,7 +9,7 @@ const UploadImage = ({ setFile }) => {
       <div className="flex items-center justify-center w-full">
         <label
           for="dropzone-file"
-          className="flex flex-col items-center justify-center w-full h-[50vh] lg:h-[75vh] border-2 border-dashed rounded-lg cursor-pointer upload-input"
+          className="flex flex-col items-center justify-center w-full h-[60vh] lg:h-[95vh] border-2 border-dashed rounded-lg cursor-pointer upload-input"
         >
           {!selectedFile ? (
             <div className="flex flex-col items-center justify-center pt-5 pb-6">

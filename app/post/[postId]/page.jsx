@@ -4,9 +4,9 @@ import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { useRouter } from "next/navigation";
-import { FaHeart } from "react-icons/fa";
 import { FaShareSquare } from "react-icons/fa";
 import LikePost from "@/app/components/likePost/LikePost";
 
@@ -60,7 +60,7 @@ const SinglePostPage = ({ params }) => {
   };
 
   const SinglePostSkeleton = () => (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center w-full">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-5 items-center w-full">
       <div className="text-center md:text-left animate-pulse">
         <div className="bg-gray-300 h-10 w-3/4 mb-6"></div>
         <div className="flex mt-20 items-center gap-2">
@@ -86,7 +86,6 @@ const SinglePostPage = ({ params }) => {
       </div>
     </div>
   );
-  
 
   return (
     <>
@@ -102,17 +101,22 @@ const SinglePostPage = ({ params }) => {
               <h1 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl leading-[3.3rem] single-post-heading font-bold">
                 {postDetail.title}
               </h1>
-              <div className="flex mt-20 items-center gap-2">
-                <Image
-                  className="rounded-full"
-                  src={user?.photoURL}
-                  width={50}
-                  height={50}
-                  alt="user"
-                />
-                <div className="flex flex-col">
-                  <p className="text-xl font-medium">{user?.displayName}</p>
-                  <span className="mt-[-5px]">{createdAtDate}</span>
+              <div className="flex items-center single-post-flex gap-32">
+                <div className="flex mt-20 items-center gap-2">
+                  <Image
+                    className="rounded-full"
+                    src={user?.photoURL}
+                    width={50}
+                    height={50}
+                    alt="user"
+                  />
+                  <div className="flex flex-col">
+                    <p className="text-xl font-medium">{user?.displayName}</p>
+                    <span className="mt-[-5px]">{createdAtDate}</span>
+                  </div>
+                </div>
+                <div>
+                  <Link className="bg-teal-600 text-white font-medium hover:bg-teal-700 transition-all px-8 py-3 rounded-md" href={postDetail?.link}>Open URL</Link>
                 </div>
               </div>
               <div className="mt-16 flex items-center gap-5">
@@ -122,7 +126,9 @@ const SinglePostPage = ({ params }) => {
                   className="flex cursor-pointer flex-col items-center"
                 >
                   <FaShareSquare className="text-[3.2rem] p-3 post-action rounded-md" />
-                  <span className="mt-[-5px] text-sm post-action-text">Share</span>
+                  <span className="mt-[-5px] text-sm post-action-text">
+                    Share
+                  </span>
                 </div>
               </div>
             </div>
@@ -137,7 +143,9 @@ const SinglePostPage = ({ params }) => {
           </div>
           <div className="flex items-center single-post-bottom gap-10 mt-16">
             <div className="flex-[6]">
-              <p className="text-justify text-sm lg:text-xl leading-tight opacity-80">{postDetail?.desc}</p>
+              <p className="text-justify text-sm lg:text-xl leading-tight opacity-80">
+                {postDetail?.desc}
+              </p>
             </div>
             <h1 className="flex-[2]">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
