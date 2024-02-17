@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { LuMenu } from "react-icons/lu";
-import { auth } from "@/firebaseConfig";
+import { app, auth } from "@/firebaseConfig";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import ThemeToggle from "../themeToggle/ThemeToggle";
@@ -13,6 +13,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { MdLogout } from "react-icons/md";
 import SearchBar from "../searchBar/SearchBar";
 import { motion, AnimatePresence } from "framer-motion";
+import { doc, getFirestore, setDoc } from "firebase/firestore";
 
 const Header = () => {
   const router = useRouter();
@@ -20,6 +21,7 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [status, setStatus] = useState("notauthenticated");
   const [user, setUser] = useState(null);
+  const db = getFirestore(app);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -55,15 +57,21 @@ const Header = () => {
     }
   };
 
-  const toggle = () => {
-    setNavToggle(!navToggle);
+  const saveUserInfo = async () => {
+    if (user.email) {
+      await setDoc(doc(db, "user", user.email), {
+        userName: user.displayName,
+        email: user.email,
+        userImage: user.photoURL,
+      });
+    }
   };
 
-  // useEffect(() => {
-  //   window.addEventListener("scroll", () => {
-  //     setNavToggle(!navToggle);
-  //   });
-  // }, [navToggle]);
+  useEffect(() => {
+    if (user) {
+      saveUserInfo();
+    }
+  }, [user]); // Run the effect whenever the user object changes
 
   const onCreateClick = () => {
     if (user) {
@@ -73,6 +81,22 @@ const Header = () => {
       router.push("/login");
     }
   };
+
+  const toggle = () => {
+    setNavToggle(!navToggle);
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setNavToggle(false);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <>
@@ -94,7 +118,7 @@ const Header = () => {
 
           <div
             className={`flex items-center nav-menu ${
-              navToggle ? "show-menu" : "nav-menu"
+              navToggle ? "show-menu" : ""
             } w-[50%]`}
           >
             <RiCloseCircleLine

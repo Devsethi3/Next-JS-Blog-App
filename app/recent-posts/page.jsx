@@ -12,18 +12,15 @@ const RecentPostPage = () => {
   const router = useRouter();
 
   const formatDate = (id) => {
-    // Convert the id (timestamp) to a Date object
     const date = new Date(parseInt(id));
 
-    // Get the individual components of the date
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed, so add 1
+    const month = String(date.getMonth() + 1).padStart(2, "0");
     const day = String(date.getDate()).padStart(2, "0");
     const hours = String(date.getHours()).padStart(2, "0");
     const minutes = String(date.getMinutes()).padStart(2, "0");
     const seconds = String(date.getSeconds()).padStart(2, "0");
 
-    // Format the date as desired (e.g., YYYY-MM-DD HH:MM:SS)
     const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 
     return formattedDate;
@@ -54,7 +51,7 @@ const RecentPostPage = () => {
               </th>
               <th className="border-2 w-[410px] py-2 px-3 table-head">Desc</th>
               <th className="border-2 py-2 px-3 table-head">Post By</th>
-              <th className="border-2 py-2 px-3 table-head">Created Date</th>
+              <th className="border-2 py-2 px-3 w-[150px] table-head">Created Date</th>
             </tr>
           </thead>
           <tbody>
