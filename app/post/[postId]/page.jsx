@@ -72,7 +72,7 @@ const SinglePostPage = ({ params }) => {
         <>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center w-full">
             <div className="text-center md:text-left">
-              <h1 className="text-3xl sm:text-3xl md:text-4xl -mt-6 lg:text-5xl leading-[3.3rem] single-post-heading font-bold">
+              <h1 className="text-4xl sm:text-4xl md:text-4xl -mt-6 lg:text-5xl leading-[3.3rem] single-post-heading font-bold">
                 {postDetail.title}
               </h1>
               <div className="bg-teal-600 text-white mt-10 py-1.5 px-5 rounded-full block w-fit">
@@ -81,29 +81,29 @@ const SinglePostPage = ({ params }) => {
               <div className="flex mt-10 items-center single-post-flex gap-32">
                 <div className="flex items-center gap-4">
                   <Image
-                    className="rounded-full"
+                    className="rounded-full single-post-user-image"
                     src={postDetail?.userImage}
                     width={50}
                     height={50}
                     alt="user"
                   />
                   <div className="flex flex-col">
-                    <p className="text-xl font-medium">
+                    <p className="text-normal lg:text-xl font-medium">
                       {postDetail?.userName}
                     </p>
-                    <span className="mt-[-5px]">{createdAtDate}</span>
+                    <span className="mt-[-5px] text-sm lg:text-normal">{createdAtDate}</span>
                   </div>
                 </div>
                 <div>
                   <Link
-                    className="bg-teal-600 text-white font-medium hover:bg-teal-700 transition-all px-8 py-3 rounded-md"
+                    className="bg-teal-600 text-white font-medium text-sm lg:text-normal lg:px-8 hover:bg-teal-700 transition-all px-6 py-3 rounded-md"
                     href={postDetail?.link}
                   >
                     Open URL
                   </Link>
                 </div>
               </div>
-              <div className="mt-16 flex items-center gap-5">
+              <div className="mt-10 flex items-center gap-5">
                 <LikePost postId={postId} />
                 <div
                   onClick={handleShare}
@@ -127,12 +127,12 @@ const SinglePostPage = ({ params }) => {
           </div>
           <div className="flex items-center single-post-bottom gap-10 mt-16">
             <div className="flex-[6]">
-              <p className="text-justify text-sm lg:text-xl leading-tight opacity-80">
+              <p className="text-justify text-normal lg:text-xl leading-tight opacity-80">
                 {postDetail?.desc}
               </p>
             </div>
             <div className="flex-[2]">
-              <RecentPosts postDetail={postDetail} />
+              <RecentPosts postDetail={postDetail} number={6} />
             </div>
           </div>
           <div className="flex pt-5 items-center gap-8 mt-4 border-t-2 dark:border-gray-600">

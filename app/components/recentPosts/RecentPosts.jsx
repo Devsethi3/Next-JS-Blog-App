@@ -2,7 +2,7 @@
 import { usePostState } from "@/app/context/postContext/PostContext";
 import Image from "next/image";
 
-const RecentPosts = () => {
+const RecentPosts = ({ number }) => {
   const { listOfPins } = usePostState();
   const truncateDescription = (text, maxLength) => {
     if (text.length > maxLength) {
@@ -11,7 +11,7 @@ const RecentPosts = () => {
     return text;
   };
 
-  const recentPosts = listOfPins.slice(0, 5);
+  const recentPosts = listOfPins.slice(0, number);
 
   return (
     <>

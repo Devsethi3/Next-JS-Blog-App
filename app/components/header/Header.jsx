@@ -147,6 +147,15 @@ const Header = () => {
                       Recent Posts
                     </Link>
                   </li>
+                  <li>
+                    <Link
+                      onClick={toggle}
+                      href="/blogs"
+                      className="whitespace-nowrap"
+                    >
+                      Blogs
+                    </Link>
+                  </li>
                 </ul>
               </nav>
             </div>
@@ -230,7 +239,7 @@ const Header = () => {
                   </AnimatePresence>
                   <button
                     onClick={onCreateClick}
-                    className="rounded-md whitespace-nowrap flex items-center gap-2 hover:bg-teal-600 hover:text-white transition-all px-5 py-2 border-2 border-teal-600 font-medium shadow"
+                    className="rounded-md whitespace-nowrap text-gray-100 flex items-center gap-2 hover:bg-teal-700 hover:text-white transition-all px-5 py-2.5 bg-teal-600 font-medium shadow"
                   >
                     <span>Create Post</span>
                     <IoMdAddCircleOutline className="text-xl" />

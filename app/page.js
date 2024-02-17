@@ -21,8 +21,7 @@ const Page = () => {
       const querySnapshot = await getDocs(q);
       const pinsData = querySnapshot.docs.map((doc) => doc.data());
 
-      // Slice the array to contain at most 8 elements
-      setListOfPins(pinsData.slice(0, 8));
+      setListOfPins(pinsData.slice(0, 4));
     } catch (error) {
       console.error("Error fetching user pins:", error);
     }
@@ -31,14 +30,14 @@ const Page = () => {
   return (
     <div>
       <HeroSection />
-      <h2 className="text-3xl font-semibold text-gray-800 mt-20">
+      <h2 className="text-3xl dark:text-gray-200 border-b-2 dark:border-gray-700 pb-2 font-semibold text-gray-800 mt-20">
         Trending Posts By Users
       </h2>
       <PostList listOfPins={listOfPins} />
-      <h2 className="text-3xl font-semibold text-gray-800 mt-20">
+      <h2 className="text-3xl dark:text-gray-200 border-b-2 dark:border-gray-700 pb-2 font-semibold text-gray-800 mt-20">
         Explore More Posts
       </h2>
-      <AllPosts listOfPins={listOfPins} />
+      <AllPosts />
     </div>
   );
 };

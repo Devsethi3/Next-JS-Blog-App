@@ -197,6 +197,10 @@ body::-webkit-scrollbar {
   .container {
     max-width: 688px;
   }
+  .single-post-user-image{
+    width: 45px;
+    height: 45px;
+  }
   .home-text {
     font-size: 3rem;
     text-align: center;

@@ -53,7 +53,7 @@ const PostItem = ({ list }) => {
             <p className="text-sm leading-tight py-3">
               {truncateDescription(list.desc, 80)}
             </p>
-            <div className="bg-teal-600 text-white text-xs py-1.5 px-3 rounded-full block w-fit">
+            <div className="bg-teal-600 text-white text-xs py-1.5 my-2 px-3 rounded-full block w-fit">
               {list.category}
             </div>
             <div className="flex justify-between items-center">
