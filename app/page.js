@@ -23,7 +23,7 @@ const page = () => {
       setListOfPins(pinsData);
     } catch (error) {
       console.error("Error fetching user pins:", error);
-      setError(error); // Set error state if an error occurs
+      setError(error);
     }
   };
 

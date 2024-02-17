@@ -1,21 +1,24 @@
 "use client";
-
 import { app, auth } from "@/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
-import Image from "next/image";
-import LoadingSkeleton from "../components/userLoadingSkeleton/LoadingSkeleton";
 import { doc, getFirestore, setDoc } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { useRouter } from "next/navigation";
 import UploadImage from "../components/uploadImage/UploadImage";
 import UserTag from "../components/userTag/UserTag";
+import Modal from "../components/modal/Modal";
+import UserPinBuilderSkeleton from "../components/skeletonLoading/UserPinBuilderSkeleton";
 
 const CreatePost = () => {
   const db = getFirestore(app);
   const storage = getStorage(app);
   const router = useRouter();
   const postId = Date.now().toString();
+
+  const [loading, setLoading] = useState(false);
+
+  const [fieldsError, setFieldsError] = useState();
 
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
@@ -52,14 +55,17 @@ const CreatePost = () => {
             desc: desc,
             link: link,
             image: url,
-            category: category,
+            category: tags.join(", "),
+            // Include author's ID
+            authorId: user.uid, // <-- Here's the author's ID
             userName: user.displayName,
             email: user.email,
             userImage: user.photoURL,
           };
           await setDoc(doc(db, "blog-post", postId), postData).then(
             (response) => {
-              router.push("/");
+              setLoading(true);
+              router.push("/" + user?.email);
             }
           );
         });
@@ -68,19 +74,23 @@ const CreatePost = () => {
 
   const handleSave = () => {
     if (!title || !desc || !file || tags.length === 0) {
-      alert(
-        "Please fill in all fields, upload an image, and add at least one category."
-      );
+      toggleModal();
       return;
     }
+
     setCategory(tags.join(", "));
+    setLoading(true);
     uploadFile();
   };
 
   const handleCategory = () => {
-    if (!category.trim()) return; // Skip empty categories
+    if (!category.trim()) return;
     setTags((prevTags) => [...prevTags, category.trim()]);
-    setCategory(""); // Clear input field after saving
+    setCategory("");
+  };
+
+  const toggleModal = () => {
+    setFieldsError(!fieldsError);
   };
 
   return (
@@ -104,7 +114,7 @@ const CreatePost = () => {
           </div>
           {isLoading ? (
             <div>
-              <LoadingSkeleton />
+              <UserPinBuilderSkeleton />
             </div>
           ) : (
             <UserTag user={user} />
@@ -149,12 +159,12 @@ const CreatePost = () => {
                 onChange={(e) => setCategory(e.target.value)}
                 value={category}
                 type="text"
-                className="input-field w-[80%] py-2 px-4 text-lg lg:text-xl rounded-md border-2 focus:border-teal-600 focus:ring-1 focus:ring-teal-600 outline-none focus-visible:border-teal-600"
+                className="input-field w-[85%] py-2 px-4 text-lg lg:text-xl rounded-md border-2 focus:border-teal-600 focus:ring-1 focus:ring-teal-600 outline-none focus-visible:border-teal-600"
                 placeholder="travel,food,fitness..."
               />
               <button
                 onClick={handleCategory}
-                className="bg-teal-600 px-5 text-white py-2.5 rounded-md"
+                className="bg-teal-600 w-[15%] px-5 text-white py-2.5 rounded-md"
               >
                 Save
               </button>
@@ -179,9 +189,18 @@ const CreatePost = () => {
       <button
         onClick={handleSave}
         className="float-end py-2.5 px-8 rounded-md bg-teal-600 text-white my-8"
+        disabled={loading}
       >
-        Publish
+        {loading ? "Publishing..." : "Publish"}
       </button>
+
+      {fieldsError && (
+        <Modal
+          toggleModal={toggleModal}
+          text="Please fill all the fields before publishing!"
+          theme="error"
+        />
+      )}
     </>
   );
 };

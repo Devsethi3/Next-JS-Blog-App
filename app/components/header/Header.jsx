@@ -211,12 +211,6 @@ const Header = () => {
                     <span>Create Post</span>
                     <IoMdAddCircleOutline className="text-xl" />
                   </button>
-                  <button
-                    onClick={handleLogout}
-                    className="rounded-md bg-teal-600 text-white px-5 py-2.5 font-medium shadow"
-                  >
-                    Logout
-                  </button>
                 </div>
               )}
             </div>

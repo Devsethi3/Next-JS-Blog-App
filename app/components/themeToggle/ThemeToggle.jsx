@@ -26,7 +26,7 @@ const ThemeToggle = () => {
         onClick={() => setDarkMode(!darkMode)}
         className="w-[70px] theme-button h-[30px] relative rounded-full cursor-pointer flex items-center justify-between px-2"
       >
-        <FaMoon className="text-red-500 dark:text-white" />
+        <FaMoon className="text-white" />
         <span
           style={
             darkMode

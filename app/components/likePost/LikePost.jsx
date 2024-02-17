@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { FaHeart } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const LikePost = ({ postId }) => {
   const [like, setLike] = useState(0);
@@ -20,17 +21,18 @@ const LikePost = ({ postId }) => {
 
   return (
     <div>
-      <div
+      <motion.div
+        whileTap={{ scale: .9 }}
         onClick={handleLike}
         className="flex cursor-pointer flex-col items-center"
       >
         <FaHeart
-          className={`text-[3.2rem] p-3 post-action ${
+          className={`text-[3.2rem] p-3 ${
             like ? "text-red-500" : null
           } rounded-md`}
         />
         <span className="mt-[-5px] text-sm post-action-text">Like({like})</span>
-      </div>
+      </motion.div>
     </div>
   );
 };

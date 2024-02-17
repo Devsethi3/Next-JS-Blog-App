@@ -1,29 +1,40 @@
 "use client";
-import { app, auth } from "@/firebaseConfig";
-import { onAuthStateChanged } from "firebase/auth";
-import { collection, getDocs, getFirestore, query } from "firebase/firestore";
-import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { usePostState } from "../context/postContext/PostContext";
 import { useUserState } from "../context/userContext/UserContext";
+import Image from "next/image";
 
 const RecentPostPage = () => {
   const { user } = useUserState();
+  const { listOfPins } = usePostState();
+  console.log(listOfPins);
+  console.log(user);
+  const router = useRouter();
 
-  // useEffect(() => {
-  //   if (user?.email) {
-  //     getUserPins();
-  //   }
-  // }, [user]);
+  const formatDate = (id) => {
+    // Convert the id (timestamp) to a Date object
+    const date = new Date(parseInt(id));
 
-  // const getUserPins = async () => {
-  //   try {
-  //     const q = query(collection(db, "blog-post"));
-  //     const querySnapshot = await getDocs(q);
-  //     const pinsData = querySnapshot.docs.map((doc) => doc.data());
-  //     setListOfPins(pinsData);
-  //   } catch (error) {
-  //     console.error("Error fetching user pins:", error);
-  //   }
-  // };
+    // Get the individual components of the date
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed, so add 1
+    const day = String(date.getDate()).padStart(2, "0");
+    const hours = String(date.getHours()).padStart(2, "0");
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+    const seconds = String(date.getSeconds()).padStart(2, "0");
+
+    // Format the date as desired (e.g., YYYY-MM-DD HH:MM:SS)
+    const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+
+    return formattedDate;
+  };
+
+  const truncateDescription = (text, maxLength) => {
+    if (text.length > maxLength) {
+      return text.slice(0, maxLength) + "...";
+    }
+    return text;
+  };
 
   return (
     <>
@@ -31,21 +42,63 @@ const RecentPostPage = () => {
         <h1 className="text-center text-3xl text-gray-700 border-b-2 border-teal-600 pb-2 my-8 font-semibold">
           Explore Recent Posts
         </h1>
-        <table className="w-full">
-          {/* <tr className="border-2">
-            <td className="border-2 w-20 py-2 px-3 bg-gray-100">S.No.</td>
-            <td className="border-2 py-2 px-3 bg-gray-100">Title</td>
-            <td className="border-2 py-2 px-3 bg-gray-100">Desc</td>
-            <td className="border-2 py-2 px-3 bg-gray-100">Post By</td>
-            <td className="border-2 py-2 px-3 bg-gray-100">Created Date</td>
-          </tr>
-          <tr>
-            <td className="border-2 py-2 px-3">1</td>
-            <td className="border-2 py-2 px-3">Title</td>
-            <td className="border-2 py-2 px-3">Desc</td>
-            <td className="border-2 py-2 px-3">Post By</td>
-            <td className="border-2 py-2 px-3">20/10/2024</td>
-          </tr> */}
+        <table className="w-full overflow-x-auto">
+          <thead>
+            <tr className="border-2 table-data">
+              <th className="border-2 w-20 py-2 px-3 table-head">S.No.</th>
+              <th className="border-2 w-[150px] py-2 px-3 table-head">
+                Blog Image
+              </th>
+              <th className="border-2 w-[400px] py-2 px-3 table-head">
+                Title
+              </th>
+              <th className="border-2 w-[410px] py-2 px-3 table-head">Desc</th>
+              <th className="border-2 py-2 px-3 table-head">Post By</th>
+              <th className="border-2 py-2 px-3 table-head">Created Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {listOfPins.map((pin, index) => (
+              <tr key={index} className="cursor-pointer my-3" onClick={() => router.push("/post/" + pin.id)}>
+                <td className="border-2 table-data text-center py-2 px-3">{index + 1}</td>
+                <td className="border-2 table-data py-2 px-3 text-center">
+                  <div className="flex justify-center">
+                    <div className="relative w-[70px] h-[70px]">
+                      <Image
+                        fill
+                        objectFit="cover"
+                        src={pin?.image}
+                        className="rounded-full"
+                        alt="user-image"
+                      />
+                    </div>
+                  </div>
+                </td>
+
+                <td className="border-2 table-data py-2 px-3 text-xl font-semibold">
+                  {truncateDescription(pin.title, 70)}
+                </td>
+                <td className="border-2 table-data py-2 text-justify px-3">
+                  {truncateDescription(pin.desc, 150)}
+                </td>
+                <td className="border-2 table-data py-2 text-center px-3">
+                  <div className="flex items-center">
+                    <Image
+                      src={user?.photoURL}
+                      width={30}
+                      height={30}
+                      className="rounded-full"
+                      alt="user-image"
+                    />
+                    <p className="text-sm font-medium">{pin.userName}</p>
+                  </div>
+                </td>
+                <td className="border-2 table-data py-2 text-center px-3">
+                  {formatDate(pin.id)}
+                </td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       </div>
     </>

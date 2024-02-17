@@ -1,4 +1,4 @@
-const LoadingSkeleton = () => {
+const UserPinBuilderSkeleton = () => {
   return (
     <>
       <div className="animate-pulse flex items-center gap-2 mt-5">
@@ -12,4 +12,4 @@ const LoadingSkeleton = () => {
   );
 };
 
-export default LoadingSkeleton;
+export default UserPinBuilderSkeleton;

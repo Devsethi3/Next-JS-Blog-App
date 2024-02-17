@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { FaShareSquare } from "react-icons/fa";
+import PostItemSkeleton from "../skeletonLoading/PostItemSkeleton";
 
 const PostItem = ({ list }) => {
   const router = useRouter();
@@ -32,32 +33,29 @@ const PostItem = ({ list }) => {
   return (
     <>
       {isLoading ? (
-        <div className="p-2 bg-gray-100 rounded-md animate-pulse">
-          <div className="h-80 w-full relative"></div>{" "}
-          <h3 className="text-xl py-3 title font-semibold bg-gray-200 h-7 w-4/5"></h3>{" "}
-          <p className="text-sm bg-gray-200 h-5 w-4/5"></p>
-          <div className="flex items-center gap-2">
-            <div className="rounded-full bg-gray-200 w-6 h-6"></div>{" "}
-            <div className="bg-gray-200 w-24 h-5"></div>{" "}
-          </div>
-        </div>
+        <PostItemSkeleton />
       ) : (
         <div className="p-2 singlepost-bg rounded-md">
           <div>
-            <Image
-              onClick={() => router.push("/post/" + list.id)}
-              src={list?.image}
-              width={500}
-              height={500}
-              alt="post"
-              className="rounded-md cursor-pointer relative"
-            />
+            <div className="relative w-full h-[300px]">
+              <Image
+                onClick={() => router.push("/post/" + list.id)}
+                src={list?.image}
+                objectFit="cover"
+                fill
+                alt="post"
+                className="rounded-md cursor-pointer relative"
+              />
+            </div>
             <h3 className="text-2xl pt-3 title font-semibold">
               {truncateDescription(list.title, 20)}
             </h3>
             <p className="text-sm leading-tight py-3">
               {truncateDescription(list.desc, 80)}
             </p>
+            <div className="bg-teal-600 text-white text-xs py-1.5 px-3 rounded-full block w-fit">
+              {list.category}
+            </div>
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-2">
                 <Image

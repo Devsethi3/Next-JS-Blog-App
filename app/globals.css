@@ -6,8 +6,8 @@
   padding: 0;
   box-sizing: border-box;
 }
-*::selection{
-  background: #0D9488;
+*::selection {
+  background: #0d9488;
   color: #fff;
 }
 :root {
@@ -44,7 +44,7 @@ body::-webkit-scrollbar {
 .theme-button {
   background: var(--theme-button);
 }
-.login-seperator{
+.login-seperator {
   background: var(--login-seperator);
 }
 .search-bar {
@@ -55,19 +55,19 @@ body::-webkit-scrollbar {
   background: var(--softBg);
   transition: all 0.3s ease;
 }
-.upload-input:hover{
+.upload-input:hover {
   background: var(--hover-light-primary-color);
 }
 .profile-picture:hover {
   background: var(--light-primary-color);
 }
-.profile-toggle-text{
+.profile-toggle-text {
   color: #000000cd;
 }
-.profile-toggle-text:hover{
+.profile-toggle-text:hover {
   background: #e9e9e9;
 }
-.profile-toggle-text{
+.profile-toggle-text {
   background: white;
 }
 .input-field {
@@ -82,6 +82,13 @@ body::-webkit-scrollbar {
 }
 .single-post-heading {
   color: var(--softTextColor);
+}
+.table-head {
+  background: var(--softBg);
+  border-color: var(--border-color);
+}
+.table-data {
+  border-color: var(--border-color);
 }
 .back-arrow:hover {
   background: var(--light-primary-color);
@@ -104,10 +111,10 @@ body::-webkit-scrollbar {
   max-width: 1380px;
   margin-inline: auto;
 }
-.header-border{
+.header-border {
   border-color: var(--border-color);
 }
-.nav-toggle{
+.nav-toggle {
   background: var(--softBg);
 }
 .nav-close {
@@ -204,7 +211,7 @@ body::-webkit-scrollbar {
     display: none;
   }
   .hero-text {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
   .single-post-bottom {
     flex-direction: column;
@@ -236,17 +243,17 @@ body::-webkit-scrollbar {
   .theme-toggle {
     display: block;
   }
-  .single-post-flex{
-    flex-direction: column;
-    gap: 1rem;
+  .single-post-flex {
+    gap: 2rem;
+    justify-content: start;
   }
-  .nav-close:hover{
+  .nav-close:hover {
     background: var(--light-primary-color);
   }
-  .profile-toggle{
+  .profile-toggle {
     top: 50%;
   }
-  .profile-actions{
+  .profile-actions {
     margin-top: -2rem;
     flex-direction: column;
   }
@@ -261,7 +268,7 @@ body::-webkit-scrollbar {
     z-index: 199;
     flex-direction: column;
     box-shadow: 0 4rem 3rem rgba(0, 0, 0, 0.3);
-    border-radius: 1rem 0 0 1rem;
+    border-radius: 0.5rem 0 0 0.5rem;
     transition: all 0.3s ease;
     opacity: 0;
     pointer-events: none;
