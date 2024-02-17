@@ -1,5 +1,5 @@
 "use client";
-import { app, } from "@/firebaseConfig";
+import { app } from "@/firebaseConfig";
 import { collection, doc, getFirestore, getDoc } from "firebase/firestore";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -14,7 +14,7 @@ const Featured = () => {
   const [pinPost, setPinPost] = useState(null);
 
   const [isLoading, setIsLoading] = useState(true);
-  
+
   useEffect(() => {
     getUserPins();
   }, []);
@@ -45,6 +45,8 @@ const Featured = () => {
     return text;
   };
 
+  console.log(pinPost);
+
   return (
     <div className="my-[2rem] featured">
       <h1 className="text-7xl home-text">
@@ -67,7 +69,21 @@ const Featured = () => {
                 {truncateDescription(pinPost.title, 70)}
               </h1>
               <p>{truncateDescription(pinPost.desc, 300)}</p>
-              <UserTag user={user} />
+              <div className="mt-5 flex items-center gap-2">
+                <Image
+                  className="rounded-full cursor-pointer p-2 profile-picture"
+                  src={pinPost?.userImage}
+                  width={54}
+                  height={54}
+                  alt="user"
+                />
+                <div className="flex flex-col">
+                  <p className="opacity-70 font-medium">{pinPost?.userName}</p>
+                  <span className="text-sm text-gray-600 mt-[-3px]">
+                    {pinPost?.email}
+                  </span>
+                </div>
+              </div>
               <button className="bg-teal-600 mt-8 hover:bg-transparent flex items-center gap-2 py-2 border-2 hover:text-teal-500 border-[#ffffff03] hover:border-teal-700 px-7 rounded-md text-white transition-colors duration-300">
                 <FaBook className="text-xl" />
                 <span>Read More</span>

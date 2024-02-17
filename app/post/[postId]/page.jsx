@@ -1,5 +1,5 @@
 "use client";
-import { app, auth } from "@/firebaseConfig";
+import { app } from "@/firebaseConfig";
 import { deleteDoc, doc, getDoc, getFirestore } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import Image from "next/image";
@@ -60,10 +60,10 @@ const SinglePostPage = ({ params }) => {
       console.error("Error deleting document:", error);
     }
   };
-
+  
   return (
     <div className="mb-10">
-      <div onClick={handleGoBack}>
+      <div onClick={handleGoBack} className="mb-5">
         <FaArrowLeftLong className="text-5xl p-3 cursor-pointer back-arrow rounded-full" />
       </div>
       {isLoading ? (
@@ -82,13 +82,15 @@ const SinglePostPage = ({ params }) => {
                 <div className="flex items-center gap-4">
                   <Image
                     className="rounded-full"
-                    src={user?.photoURL}
+                    src={postDetail?.userImage}
                     width={50}
                     height={50}
                     alt="user"
                   />
                   <div className="flex flex-col">
-                    <p className="text-xl font-medium">{user?.displayName}</p>
+                    <p className="text-xl font-medium">
+                      {postDetail?.userName}
+                    </p>
                     <span className="mt-[-5px]">{createdAtDate}</span>
                   </div>
                 </div>
@@ -129,9 +131,9 @@ const SinglePostPage = ({ params }) => {
                 {postDetail?.desc}
               </p>
             </div>
-            <h1 className="flex-[2]">
+            <div className="flex-[2]">
               <RecentPosts postDetail={postDetail} />
-            </h1>
+            </div>
           </div>
           <div className="flex pt-5 items-center gap-8 mt-4 border-t-2 dark:border-gray-600">
             <button className="flex py-2.5 px-6 bg-teal-600 text-white rounded-md items-center gap-2">

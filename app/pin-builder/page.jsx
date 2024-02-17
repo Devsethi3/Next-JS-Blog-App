@@ -56,7 +56,6 @@ const CreatePost = () => {
             link: link,
             image: url,
             category: tags.join(", "),
-            // Include author's ID
             authorId: user.uid, // <-- Here's the author's ID
             userName: user.displayName,
             email: user.email,
@@ -73,7 +72,7 @@ const CreatePost = () => {
   };
 
   const handleSave = () => {
-    if (!title || !desc || !file || tags.length === 0) {
+    if (!title || !desc || !file || !link || tags.length === 0) {
       toggleModal();
       return;
     }
@@ -154,17 +153,17 @@ const CreatePost = () => {
                 </div>
               ))}
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex w-[100%] items-center gap-2">
               <input
                 onChange={(e) => setCategory(e.target.value)}
                 value={category}
                 type="text"
-                className="input-field w-[85%] py-2 px-4 text-lg lg:text-xl rounded-md border-2 focus:border-teal-600 focus:ring-1 focus:ring-teal-600 outline-none focus-visible:border-teal-600"
+                className="input-field py-2 category-input w-[85%] px-4 text-lg lg:text-xl rounded-md border-2 focus:border-teal-600 focus:ring-1 focus:ring-teal-600 outline-none focus-visible:border-teal-600"
                 placeholder="travel,food,fitness..."
               />
               <button
                 onClick={handleCategory}
-                className="bg-teal-600 w-[15%] px-5 text-white py-2.5 rounded-md"
+                className="bg-teal-600 category-btn w-[15%] px-5 text-white py-2.5 rounded-md"
               >
                 Save
               </button>
@@ -186,13 +185,15 @@ const CreatePost = () => {
           </div>
         </div>
       </div>
-      <button
-        onClick={handleSave}
-        className="float-end py-2.5 px-8 rounded-md bg-teal-600 text-white my-8"
-        disabled={loading}
-      >
-        {loading ? "Publishing..." : "Publish"}
-      </button>
+      <div className="mb-24">
+        <button
+          onClick={handleSave}
+          className="float-end py-2.5 px-8 rounded-md bg-teal-600 text-white my-8"
+          disabled={loading}
+        >
+          {loading ? "Publishing..." : "Publish"}
+        </button>
+      </div>
 
       {fieldsError && (
         <Modal

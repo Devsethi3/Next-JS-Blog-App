@@ -33,10 +33,12 @@ const RecentPostPage = () => {
     return text;
   };
 
+  console.log(listOfPins);
+
   return (
     <>
       <div className="mt-5">
-        <h1 className="text-center text-3xl text-gray-700 border-b-2 border-teal-600 pb-2 my-8 font-semibold">
+        <h1 className="text-center text-3xl text-gray-700 dark:text-gray-200 border-b-[3px] border-teal-600 pb-2 my-8 font-semibold">
           Explore Recent Posts
         </h1>
         <table className="w-full overflow-x-auto">
@@ -46,18 +48,24 @@ const RecentPostPage = () => {
               <th className="border-2 w-[150px] py-2 px-3 table-head">
                 Blog Image
               </th>
-              <th className="border-2 w-[400px] py-2 px-3 table-head">
-                Title
-              </th>
+              <th className="border-2 w-[400px] py-2 px-3 table-head">Title</th>
               <th className="border-2 w-[410px] py-2 px-3 table-head">Desc</th>
               <th className="border-2 py-2 px-3 table-head">Post By</th>
-              <th className="border-2 py-2 px-3 w-[150px] table-head">Created Date</th>
+              <th className="border-2 py-2 px-3 w-[150px] table-head">
+                Created Date
+              </th>
             </tr>
           </thead>
           <tbody>
             {listOfPins.map((pin, index) => (
-              <tr key={index} className="cursor-pointer my-3" onClick={() => router.push("/post/" + pin.id)}>
-                <td className="border-2 table-data text-center py-2 px-3">{index + 1}</td>
+              <tr
+                key={index}
+                className="cursor-pointer my-3"
+                onClick={() => router.push("/post/" + pin.id)}
+              >
+                <td className="border-2 table-data text-center py-2 px-3">
+                  {index + 1}
+                </td>
                 <td className="border-2 table-data py-2 px-3 text-center">
                   <div className="flex justify-center">
                     <div className="relative w-[70px] h-[70px]">
@@ -72,16 +80,16 @@ const RecentPostPage = () => {
                   </div>
                 </td>
 
-                <td className="border-2 table-data py-2 px-3 text-xl font-semibold">
+                <td className="border-2 table-data leading-tight opacity-80 py-2 px-3 text-xl font-semibold">
                   {truncateDescription(pin.title, 70)}
                 </td>
-                <td className="border-2 table-data py-2 text-justify px-3">
+                <td className="border-2 leading-tight table-data py-2 text-justify px-3">
                   {truncateDescription(pin.desc, 150)}
                 </td>
                 <td className="border-2 table-data py-2 text-center px-3">
-                  <div className="flex items-center">
+                  <div className="flex gap-2 items-center">
                     <Image
-                      src={user?.photoURL}
+                      src={pin?.userImage}
                       width={30}
                       height={30}
                       className="rounded-full"

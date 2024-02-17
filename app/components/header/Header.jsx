@@ -105,9 +105,9 @@ const Header = () => {
           <div className="md:flex md:items-center md:gap-12">
             <Link href="/" className="flex items-center gap-4">
               <Image
-                src="/images/favicon.ico"
-                width={35}
-                height={35}
+                src="/images/logo.png"
+                width={40}
+                height={40}
                 alt="logo"
               />
               <p className="text-[1.8rem] font-bold nav-logo-text">BLOGAPP</p>
@@ -186,24 +186,24 @@ const Header = () => {
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 50 }}
-                        className="absolute profile-toggle top-16 mt-2 w-48 rounded-md bg-white shadow-lg z-[100]"
+                        className="absolute profile-toggle top-16 mt-2 w-48 rounded-md bg-white dark:bg-[#1a2644] shadow-lg z-[100]"
                       >
                         <ul className="py-1">
-                          <li className="profile-toggle-text cursor-pointer px-4 py-2">
+                          <li className="profile-toggle-text cursor-pointer">
                             <button
-                              className="flex items-center gap-2"
+                              className="flex items-center gap-2 border-s-[5px] w-full border-teal-500 bg-teal-50 dark:text-gray-100 dark:bg-[#263762] px-4 py-3 text-teal-700"
                               onClick={handleProfile}
                             >
-                              <FaUserCircle />
+                              <FaUserCircle className="text-xl" />
                               <span>Profile</span>
                             </button>
                           </li>
-                          <li className="profile-toggle-text cursor-pointer px-4 py-2">
+                          <li className="flex items-center gap-2 border-s-[5px] border-[#fff0] w-full dark:hover:bg-[#263762] hover:bg-teal-50 px-4 py-3">
                             <button
                               className="flex items-center gap-2"
                               onClick={handleLogout}
                             >
-                              <MdLogout />
+                              <MdLogout className="text-xl" />
                               Logout
                             </button>
                           </li>
@@ -216,10 +216,10 @@ const Header = () => {
                               alt="user"
                             />
                             <div className="flex flex-col">
-                              <p className="text-sm text-gray-800">
+                              <p className="text-sm dark:text-gray-300 text-gray-800">
                                 {user.displayName}
                               </p>
-                              <span className="text-xs text-gray-600 mt-[-3px]">
+                              <span className="text-xs dark:text-gray-400 text-gray-600 mt-[-3px]">
                                 {user.email}
                               </span>
                             </div>
