@@ -282,8 +282,7 @@ body::-webkit-scrollbar {
     pointer-events: auto;
     opacity: 1;
   }
-  .nav-logo-text,
-  .search-icon {
+  .nav-logo-text {
     display: none;
   }
   .search-bar {

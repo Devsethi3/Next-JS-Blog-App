@@ -1,4 +1,10 @@
-import { FaDribbble, FaFacebook, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
+import {
+  FaDribbble,
+  FaFacebook,
+  FaInstagram,
+  FaTwitter,
+} from "react-icons/fa";
+import Link from 'next/link'
 
 const Footer = () => {
   return (
@@ -16,57 +22,39 @@ const Footer = () => {
 
           <ul className="mt-12 flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-12">
             <li>
-              <a
+              <Link
                 className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
-                href="#"
+                href="/blogs"
+              >
+                Home
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
+                href="/blogs"
               >
                 About
-              </a>
+              </Link>
             </li>
 
             <li>
-              <a
+              <Link
                 className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
-                href="#"
+                href="/blogs"
               >
-                Careers
-              </a>
+                Recent Posts
+              </Link>
             </li>
 
             <li>
-              <a
+              <Link
                 className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
-                href="#"
+                href="/blogs"
               >
-                History
-              </a>
-            </li>
-
-            <li>
-              <a
-                className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
-                href="#"
-              >
-                Services
-              </a>
-            </li>
-
-            <li>
-              <a
-                className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
-                href="#"
-              >
-                Projects
-              </a>
-            </li>
-
-            <li>
-              <a
-                className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
-                href="#"
-              >
-                Blog
-              </a>
+                Blogs
+              </Link>
             </li>
           </ul>
 

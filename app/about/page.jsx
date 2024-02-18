@@ -14,6 +14,7 @@ const AboutPage = () => {
             src="/images/culture.png"
             className="image rounded-md"
             fill
+            alt="about"
           />
         </div>
         <div>

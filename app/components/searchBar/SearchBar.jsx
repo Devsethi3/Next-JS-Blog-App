@@ -1,7 +1,13 @@
 "use client";
 import { usePostState } from "@/app/context/postContext/PostContext";
 import { app } from "@/firebaseConfig";
-import { collection, getDocs, getFirestore, query, where } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  getFirestore,
+  query,
+  where,
+} from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 
@@ -12,11 +18,6 @@ const SearchBar = () => {
   const [filteredPosts, setFilteredPosts] = useState([]);
   const db = getFirestore(app);
 
-  useEffect(() => {
-    const titles = listOfPins.map((pin) => pin.title);
-    setTitle(titles);
-  }, [listOfPins]);
-
   const filterPosts = async () => {
     const q = query(
       collection(db, "blog-post"),
@@ -26,6 +27,11 @@ const SearchBar = () => {
     const filteredPostsData = querySnapshot.docs.map((doc) => doc.data());
     setFilteredPosts(filteredPostsData);
   };
+
+  useEffect(() => {
+    const titles = listOfPins.map((pin) => pin.title);
+    setTitle(titles);
+  }, [listOfPins, filterPosts]);
 
   const handleChange = (e) => {
     setSearchQuery(e.target.value);
@@ -40,8 +46,8 @@ const SearchBar = () => {
   }, [searchQuery]);
 
   return (
-    <div className="flex items-center search-bar rounded-md py-2 px-4">
-      <FaSearch className="text-gray-400 search-icon mr-3" />
+    <div className="flex items-center bg-gray-100 rounded-md dark:bg-[#18233e] px-4 py-2 w-[150px] lg:w-[300px]">
+      <FaSearch className="text-gray-500 lg:mr-3 mr-0" />
       <input
         value={searchQuery}
         onChange={handleChange}
@@ -49,7 +55,7 @@ const SearchBar = () => {
         className="bg-transparent outline-none"
         name="search"
         id="search"
-        placeholder="Search Here..."
+        placeholder="Search..."
       />
     </div>
   );

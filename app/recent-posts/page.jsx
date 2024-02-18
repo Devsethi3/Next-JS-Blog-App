@@ -7,22 +7,17 @@ import Image from "next/image";
 const RecentPostPage = () => {
   const { user } = useUserState();
   const { listOfPins } = usePostState();
-  console.log(listOfPins);
-  console.log(user);
   const router = useRouter();
 
   const formatDate = (id) => {
     const date = new Date(parseInt(id));
-
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, "0");
     const day = String(date.getDate()).padStart(2, "0");
     const hours = String(date.getHours()).padStart(2, "0");
     const minutes = String(date.getMinutes()).padStart(2, "0");
     const seconds = String(date.getSeconds()).padStart(2, "0");
-
     const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-
     return formattedDate;
   };
 
@@ -33,15 +28,13 @@ const RecentPostPage = () => {
     return text;
   };
 
-  console.log(listOfPins);
-
   return (
-    <>
-      <div className="mt-5">
-        <h1 className="text-center text-3xl text-gray-700 dark:text-gray-200 border-b-[3px] border-teal-600 pb-2 my-8 font-semibold">
-          Explore Recent Posts
-        </h1>
-        <table className="w-full overflow-x-auto">
+    <div className="mt-5">
+      <h1 className="text-center text-3xl text-gray-700 dark:text-gray-200 border-b-[3px] border-teal-600 pb-2 my-8 font-semibold">
+        Explore Recent Posts
+      </h1>
+      <div className="overflow-x-auto">
+        <table className="w-full">
           <thead>
             <tr className="border-2 table-data">
               <th className="border-2 w-20 py-2 px-3 table-head">S.No.</th>
@@ -79,15 +72,14 @@ const RecentPostPage = () => {
                     </div>
                   </div>
                 </td>
-
                 <td className="border-2 table-data leading-tight opacity-80 py-2 px-3 text-xl font-semibold">
                   {truncateDescription(pin.title, 70)}
                 </td>
                 <td className="border-2 leading-tight table-data py-2 text-justify px-3">
-                  {truncateDescription(pin.desc, 150)}
+                  {truncateDescription(pin.desc, 140)}
                 </td>
                 <td className="border-2 table-data py-2 text-center px-3">
-                  <div className="flex gap-2 items-center">
+                  <div className="flex flex-col lg:flex-row gap-2 items-center">
                     <Image
                       src={pin?.userImage}
                       width={30}
@@ -106,7 +98,7 @@ const RecentPostPage = () => {
           </tbody>
         </table>
       </div>
-    </>
+    </div>
   );
 };
 

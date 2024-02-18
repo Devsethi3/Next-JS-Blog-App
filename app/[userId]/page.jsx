@@ -21,18 +21,11 @@ const ProfilePage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [listOfPins, setListOfPins] = useState([]);
 
-  useEffect(() => {
-    if (user?.email) {
-      getUserPins();
-    }
-  }, [user]);
-
   const getUserPins = async () => {
     try {
       if (!user?.email) {
         return;
       }
-
       const q = query(
         collection(db, "blog-post"),
         where("email", "==", user.email)
@@ -45,6 +38,19 @@ const ProfilePage = () => {
       console.error("Error fetching user pins:", error);
       setIsLoading(false);
     }
+  };
+
+  useEffect(() => {
+    if (user?.email) {
+      getUserPins();
+    }
+  }, [user, getUserPins]);
+
+  const handleShare = async () => {
+    await navigator.share({
+      title: document.title,
+      url: window.location.href,
+    });
   };
 
   return (
@@ -62,16 +68,23 @@ const ProfilePage = () => {
           />
           <div className="flex flex-col items-center gap-2">
             <div className="flex items-center mt-5 gap-2">
-              <p className="font-medium text-gray-800 dark:text-gray-400">Name:</p>
+              <p className="font-medium text-gray-800 dark:text-gray-400">
+                Name:
+              </p>
               <p className="font-medium">{user.displayName}</p>
             </div>
             <div className="flex items-center gap-2">
-              <p className="font-medium text-gray-800 dark:text-gray-400">Email:</p>
+              <p className="font-medium text-gray-800 dark:text-gray-400">
+                Email:
+              </p>
               <p>{user.email}</p>
             </div>
           </div>
           <div className="flex mt-8 items-center gap-8">
-            <button className="bg-indigo-600 flex items-center gap-2 py-2.5 px-7 rounded-md text-white transition-colors hover:bg-indigo-700 duration-300">
+            <button
+              onClick={handleShare}
+              className="bg-indigo-600 flex items-center gap-2 py-2.5 px-7 rounded-md text-white transition-colors hover:bg-indigo-700 duration-300"
+            >
               <FaRegShareSquare />
               <span>Share</span>
             </button>

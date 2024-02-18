@@ -25,12 +25,13 @@ const Featured = () => {
       </h1>
       {!isLoading ? (
         <div className="grid lg:grid-cols-2 md:grid-cols-1 items-center gap-6 mt-[3rem]">
-          <div className="img-container relative  h-[350px] lg:h-[450px]">
+          <div className="img-container relative h-[350px] lg:h-[350px]">
             <Image
               objectFit="cover"
-              src="/images/culture.png"
+              src="/images/home.jpg"
               className="image rounded-md"
               fill
+              alt="home"
             />
           </div>
           <div className="content">
@@ -43,9 +44,7 @@ const Featured = () => {
               recusandae ratione in obcaecati placeat nemo accusantium illo,
               asperiores fugiat pariatur quae ipsa! Officia perferendis vel
               porro repellat neque dolorem velit earum architecto voluptates
-              cumque, dignissimos, id exercitationem tenetur sequi sed pariatur
-              incidunt? Ex itaque quidem distinctio asperiores impedit? Rem cum
-              doloremque sed ducimus ipsum consequatur dignissimos.
+              cumque.
             </p>
             <button
               onClick={() => router.push("/about")}

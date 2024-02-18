@@ -16,7 +16,7 @@ const Page = () => {
 
   useEffect(() => {
     getAllPins();
-  }, []);
+  }, [getAllPins]);
 
   const getAllPins = async () => {
     try {

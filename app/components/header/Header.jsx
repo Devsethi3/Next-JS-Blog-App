@@ -71,8 +71,8 @@ const Header = () => {
     if (user) {
       saveUserInfo();
     }
-  }, [user]); // Run the effect whenever the user object changes
-
+  }, [user, saveUserInfo]);
+  
   const onCreateClick = () => {
     if (user) {
       router.push("/pin-builder");
