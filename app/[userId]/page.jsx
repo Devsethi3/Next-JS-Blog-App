@@ -60,12 +60,21 @@ const ProfilePage = () => {
             alt="user-image"
             className="rounded-full"
           />
+          <div className="flex flex-col items-center gap-2">
+            <div className="flex items-center mt-5 gap-4">
+              <p className="font-medium text-gray-800 dark:text-gray-400">Name:</p>
+              <p className="font-medium">{user.displayName}</p>
+            </div>
+            <div className="flex items-center gap-4">
+              <p className="font-medium text-gray-800 dark:text-gray-400">Email:</p>
+              <p>{user.email}</p>
+            </div>
+          </div>
           <div className="flex mt-8 items-center gap-8">
             <button className="bg-indigo-600 flex items-center gap-2 py-2.5 px-7 rounded-md text-white transition-colors hover:bg-indigo-700 duration-300">
               <FaRegShareSquare />
               <span>Share</span>
             </button>
-
             <button className="bg-red-500 flex items-center gap-2 py-2.5 px-7 rounded-md text-white transition-colors hover:bg-red-600 duration-300">
               <TbLogout className="text-xl" />
               <span>Logout</span>

@@ -104,12 +104,7 @@ const Header = () => {
         <div className="flex border-b-2 header-border h-[5rem] items-center justify-between">
           <div className="md:flex md:items-center md:gap-12">
             <Link href="/" className="flex items-center gap-4">
-              <Image
-                src="/images/logo.png"
-                width={40}
-                height={40}
-                alt="logo"
-              />
+              <Image src="/images/logo.png" width={40} height={40} alt="logo" />
               <p className="text-[1.8rem] font-bold nav-logo-text">BLOGAPP</p>
             </Link>
           </div>
@@ -200,14 +195,14 @@ const Header = () => {
                         <ul className="py-1">
                           <li className="profile-toggle-text cursor-pointer">
                             <button
-                              className="flex items-center gap-2 border-s-[5px] w-full border-teal-500 bg-teal-50 dark:text-gray-100 dark:bg-[#263762] px-4 py-3 text-teal-700"
+                              className="flex items-center gap-2 border-s-[5px] border-[#fff0] w-full hover:border-teal-600 hover:text-teal-700 hover:bg-teal-50 dark:text-gray-100 dark:bg-[#1a2644] dark:hover:bg-[#263762] px-4 py-3"
                               onClick={handleProfile}
                             >
                               <FaUserCircle className="text-xl" />
                               <span>Profile</span>
                             </button>
                           </li>
-                          <li className="flex items-center gap-2 border-s-[5px] border-[#fff0] w-full dark:hover:bg-[#263762] hover:bg-teal-50 px-4 py-3">
+                          <li className="flex items-center gap-2 border-s-[5px] border-[#fff0] dark:text-gray-100 hover:border-teal-600 w-full dark:hover:bg-[#263762] hover:text-teal-700 hover:bg-teal-50 px-4 py-3">
                             <button
                               className="flex items-center gap-2"
                               onClick={handleLogout}

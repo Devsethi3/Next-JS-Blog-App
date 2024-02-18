@@ -20,7 +20,6 @@ const Page = () => {
       const q = query(collection(db, "blog-post"));
       const querySnapshot = await getDocs(q);
       const pinsData = querySnapshot.docs.map((doc) => doc.data());
-
       setListOfPins(pinsData.slice(0, 4));
     } catch (error) {
       console.error("Error fetching user pins:", error);
