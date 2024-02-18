@@ -25,7 +25,6 @@ const SinglePostPage = ({ params }) => {
     setPostId(params.postId);
 
     const getPinDetail = async () => {
-      const db = getFirestore(app); 
       const docRef = doc(db, "blog-post", params.postId);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
@@ -61,7 +60,7 @@ const SinglePostPage = ({ params }) => {
       console.error("Error deleting document:", error);
     }
   };
-
+  
   return (
     <div className="mb-10">
       <div onClick={handleGoBack} className="mb-5">
@@ -92,9 +91,7 @@ const SinglePostPage = ({ params }) => {
                     <p className="text-normal lg:text-xl font-medium">
                       {postDetail?.userName}
                     </p>
-                    <span className="mt-[-5px] text-sm lg:text-normal">
-                      {createdAtDate}
-                    </span>
+                    <span className="mt-[-5px] text-sm lg:text-normal">{createdAtDate}</span>
                   </div>
                 </div>
                 <div>

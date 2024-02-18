@@ -16,7 +16,7 @@ export const PostContextProvider = ({ children }) => {
 
   useEffect(() => {
     getAllPins();
-  }, [getAllPins]);
+  }, []);
 
   const getAllPins = async () => {
     try {

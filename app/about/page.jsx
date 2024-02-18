@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { MdOutlineArrowOutward } from "react-icons/md";
@@ -26,7 +26,7 @@ const AboutPage = () => {
             Welcome to <span className="italic text-teal-500">Lumina</span>,
             where inspiration meets community! Our platform is designed to
             empower users to explore, engage, and connect through a diverse
-            range of content and conversations. Whether you're seeking
+            range of content and conversations. Whether you&apos;re seeking
             insightful articles, captivating visuals, or meaningful discussions,{" "}
             <span className="italic text-teal-500">Lumina</span> has something
             for everyone. Lorem ipsum dolor sit amet consectetur adipisicing

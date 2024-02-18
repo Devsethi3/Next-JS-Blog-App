@@ -5,7 +5,6 @@ import Image from "next/image";
 import { LuMenu } from "react-icons/lu";
 import { app, auth } from "@/firebaseConfig";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import { useRouter } from "next/navigation";
 import ThemeToggle from "../themeToggle/ThemeToggle";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { RiArrowDropDownLine, RiCloseCircleLine } from "react-icons/ri";
@@ -14,6 +13,7 @@ import { MdLogout } from "react-icons/md";
 import SearchBar from "../searchBar/SearchBar";
 import { motion, AnimatePresence } from "framer-motion";
 import { doc, getFirestore, setDoc } from "firebase/firestore";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
   const router = useRouter();
@@ -30,6 +30,7 @@ const Header = () => {
         setUser(user);
       } else {
         setStatus("notauthenticated");
+        setUser(null); // Ensure user is null when not authenticated
       }
     });
 
@@ -58,7 +59,7 @@ const Header = () => {
   };
 
   const saveUserInfo = async () => {
-    if (user.email) {
+    if (user && user.email) {
       await setDoc(doc(db, "user", user.email), {
         userName: user.displayName,
         email: user.email,
@@ -71,8 +72,8 @@ const Header = () => {
     if (user) {
       saveUserInfo();
     }
-  }, [user, saveUserInfo]);
-  
+  }, [user]);
+
   const onCreateClick = () => {
     if (user) {
       router.push("/pin-builder");

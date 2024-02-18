@@ -5,18 +5,15 @@ import PostList from "./components/posts/PostList";
 import { collection, getDocs, getFirestore, query } from "firebase/firestore";
 import { app } from "@/firebaseConfig";
 import AllPosts from "./components/allPosts/AllPosts";
-import LocomotiveScroll from "locomotive-scroll";
 
 const Page = () => {
-  const locomotiveScroll = new LocomotiveScroll();
-
   const [listOfPins, setListOfPins] = useState([]);
 
   const db = getFirestore(app);
 
   useEffect(() => {
     getAllPins();
-  }, [getAllPins]);
+  }, []);
 
   const getAllPins = async () => {
     try {

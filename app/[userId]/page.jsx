@@ -21,30 +21,30 @@ const ProfilePage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [listOfPins, setListOfPins] = useState([]);
 
-  const getUserPins = async () => {
-    try {
-      if (!user?.email) {
-        return;
-      }
-      const q = query(
-        collection(db, "blog-post"),
-        where("email", "==", user.email)
-      );
-      const querySnapshot = await getDocs(q);
-      const pinsData = querySnapshot.docs.map((doc) => doc.data());
-      setListOfPins(pinsData);
-      setIsLoading(false);
-    } catch (error) {
-      console.error("Error fetching user pins:", error);
-      setIsLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const getUserPins = async () => {
+      try {
+        if (!user?.email) {
+          return;
+        }
+        const q = query(
+          collection(db, "blog-post"),
+          where("email", "==", user.email)
+        );
+        const querySnapshot = await getDocs(q);
+        const pinsData = querySnapshot.docs.map((doc) => doc.data());
+        setListOfPins(pinsData);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error fetching user pins:", error);
+        setIsLoading(false);
+      }
+    };
+
     if (user?.email) {
       getUserPins();
     }
-  }, [user, getUserPins]);
+  }, [db, user]);
 
   const handleShare = async () => {
     await navigator.share({

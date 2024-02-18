@@ -2,8 +2,7 @@
 import { auth } from "@/firebaseConfig";
 import {
   GoogleAuthProvider,
-  createUserWithEmailAndPassword,
-  onAuthStateChanged,
+createUserWithEmailAndPassword,
   signInWithRedirect,
 } from "firebase/auth";
 import { useRouter } from "next/navigation";
