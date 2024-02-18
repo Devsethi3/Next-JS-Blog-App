@@ -105,7 +105,7 @@ const Header = () => {
           <div className="md:flex md:items-center md:gap-12">
             <Link href="/" className="flex items-center gap-4">
               <Image src="/images/logo.png" width={40} height={40} alt="logo" />
-              <p className="text-[1.8rem] font-bold nav-logo-text">BLOGAPP</p>
+              <p className="text-[1.8rem] font-bold nav-logo-text">LUMINA</p>
             </Link>
           </div>
           <SearchBar user={user} />
@@ -129,7 +129,7 @@ const Header = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link onClick={toggle} href="/">
+                    <Link onClick={toggle} href="/about">
                       About
                     </Link>
                   </li>

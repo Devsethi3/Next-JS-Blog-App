@@ -83,6 +83,10 @@ const CreatePost = () => {
   };
 
   const handleCategory = () => {
+    if (!category) {  
+      <Modal text="At least save 1 category for your blog" theme="error" />;
+      return;
+    }
     if (!category.trim()) return;
     setTags((prevTags) => [...prevTags, category.trim()]);
     setCategory("");

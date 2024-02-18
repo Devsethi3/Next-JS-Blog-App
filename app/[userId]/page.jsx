@@ -61,11 +61,11 @@ const ProfilePage = () => {
             className="rounded-full"
           />
           <div className="flex flex-col items-center gap-2">
-            <div className="flex items-center mt-5 gap-4">
+            <div className="flex items-center mt-5 gap-2">
               <p className="font-medium text-gray-800 dark:text-gray-400">Name:</p>
               <p className="font-medium">{user.displayName}</p>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <p className="font-medium text-gray-800 dark:text-gray-400">Email:</p>
               <p>{user.email}</p>
             </div>

@@ -256,7 +256,7 @@ body::-webkit-scrollbar {
     background: var(--light-primary-color);
   }
   .profile-toggle {
-    top: 50%;
+    top: 60%;
   }
   .profile-actions {
     margin-top: -2rem;
